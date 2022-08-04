@@ -139,28 +139,24 @@ if __name__ == '__main__':
       lftDgn,
       rgtDgn
     ]
+    gridValues = gridVals.values()
 
-    for win in wins:
-      if win:
-        global gameResult
-        global gameOn
-        gameOn = False
-        gameResult = 'Player ' + sym + ' wins the game!'
-    
-  def check_draw():
-    values = gridVals.values()
-    
-    if 0 not in values:
-      global gameOn
+    # check for draw
+    if True not in wins and 0 not in gridValues:
       global gameResult
+      global gameOn
       gameOn = False
       gameResult = 'Cat wins'
+    else:
+      for win in wins:
+        if win:
+          gameOn = False
+          gameResult = 'Player ' + sym + ' wins the game!'
 
   def run_game(player):
-      print_grid()
-      player_move_prompt(player)
-      check_spots(player)
-      check_draw()
+    print_grid()
+    player_move_prompt(player)
+    check_spots(player)
 
   while gameOn:
     if togglePlayer:
